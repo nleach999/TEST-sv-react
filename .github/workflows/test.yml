@@ -1,0 +1,50 @@
+name: Checkmarx
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - master
+jobs:
+  checkmarx-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@v4
+       
+    - name: test
+      id: test
+      uses: nleach999/cxonepp-dev@HEAD
+      with:
+        container-image: cxnleach/scaresolver-general-build:latest
+        cx-tenant: ${{ secrets.CXONE_TENANT }}
+        cx-client-id: ${{ secrets.CXONE_CLIENT_ID }}
+        cx-client-secret: ${{ secrets.CXONE_CLIENT_SECRET }}
+        # cx-cli-debug: true
+        additional-scan-params: --scan-types sast
+        # docker-login-username: ${{ secrets.DOCKER_USER }}
+        # docker-login-password: ${{ secrets.DOCKER_PASSWORD }}
+        upload-sarif-file: true
+        # attach-sarif-file: true
+        # attach-sbom-file: true
+
+
+    - name: Show outputs
+      shell: bash
+      run: |
+        echo ScanID: ${{ steps.test.outputs.scan-id}}
+        echo ProjectID: ${{ steps.test.outputs.project-id}}
+
+        
+        
+        
+
+
+         
