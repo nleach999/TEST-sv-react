@@ -32,7 +32,7 @@ jobs:
         # docker-login-username: ${{ secrets.DOCKER_USER }}
         # docker-login-password: ${{ secrets.DOCKER_PASSWORD }}
         upload-sarif-file: true
-        additional-report-params: --filter state=NOT_EXPLOITABLE
+        additional-report-params: --filter state=TO_VERIFY;PROPOSED_NOT_EXPLOITABLE;CONFIRMED;URGENT;NOT_IGNORED
         # attach-sarif-file: true
         # attach-sbom-file: true
 
