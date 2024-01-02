@@ -28,7 +28,7 @@ jobs:
         cx-client-id: ${{ secrets.CXONE_CLIENT_ID }}
         cx-client-secret: ${{ secrets.CXONE_CLIENT_SECRET }}
         # cx-cli-debug: true
-        additional-scan-params: --scan-types sast
+        additional-scan-params: --scan-types sast,sca
         # docker-login-username: ${{ secrets.DOCKER_USER }}
         # docker-login-password: ${{ secrets.DOCKER_PASSWORD }}
         upload-sarif-file: true
