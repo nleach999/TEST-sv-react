@@ -1,4 +1,4 @@
-name: Checkmarx
+name: Checkmarx Scan
 on:
   workflow_dispatch:
   push:
@@ -19,8 +19,8 @@ jobs:
     - name: Code Checkout
       uses: actions/checkout@v4
        
-    - name: test
-      id: test
+    - name: CxOne Scan
+      id: cxscan
       uses: nleach999/cxonepp-dev@HEAD
       with:
         container-image: cxnleach/scaresolver-general-build:latest
@@ -39,8 +39,8 @@ jobs:
     - name: Show outputs
       shell: bash
       run: |
-        echo ScanID: ${{ steps.test.outputs.scan-id}}
-        echo ProjectID: ${{ steps.test.outputs.project-id}}
+        echo ScanID: ${{ steps.cxscan.outputs.scan-id}}
+        echo ProjectID: ${{ steps.cxscan.outputs.project-id}}
 
         
         
